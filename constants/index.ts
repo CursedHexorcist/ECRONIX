@@ -1,4 +1,4 @@
-import { FaYoutube, FaFacebook } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import {
   RxDiscordLogo,
   RxGithubLogo,
@@ -44,7 +44,6 @@ export const SKILL_DATA = [
     width: 80,
     height: 80,
   },
-
   {
     skill_name: "TypeScript",
     image: "ts.png",
@@ -126,15 +125,12 @@ export const FRONTEND_SKILL = [
     width: 80,
     height: 80,
   },
-
   {
     skill_name: "React",
     image: "react.png",
     width: 80,
     height: 80,
   },
-
-
   {
     skill_name: "Next.js 14",
     image: "next.png",
@@ -162,33 +158,63 @@ export const BACKEND_SKILL = [
     width: 40,
     height: 40,
   },
-
-
 ] as const;
 
 export const FULLSTACK_SKILL = [
+  {
+    skill_name: "React",
+    image: "react.png",
+    width: 80,
+    height: 80,
+  },
+  {
+    skill_name: "Node.js",
+    image: "node.png",
+    width: 80,
+    height: 80,
+  },
+  {
+    skill_name: "Express.js",
+    image: "express.png",
+    width: 80,
+    height: 80,
+  },
+  {
+    skill_name: "MongoDB",
+    image: "mongodb.png",
+    width: 40,
+    height: 40,
+  },
 ] as const;
 
 export const OTHER_SKILL = [
-
+  {
+    skill_name: "Docker",
+    image: "docker.png",
+    width: 80,
+    height: 80,
+  },
+  {
+    skill_name: "Git",
+    image: "git.png",
+    width: 80,
+    height: 80,
+  },
 ] as const;
 
 export const PROJECTS = [
   {
     title: "🛒 Tekisky Mart – The Future of eCommerce",
-    
     image: "/projects/project-1.webp",
     link: "https://tekiskymart.com/",
   },
   {
     title: "Tekisky – The Future of Tech",
-
     image: "/projects/project-2.webp",
     link: "https://tekisky.com/",
   },
   {
     title: "Speedline Auto Parts – The Future of Auto Parts",
-   
     image: "/projects/project-3.webp",
     link: "https://speedlineautoparts.netlify.app/",
   },
@@ -198,19 +224,16 @@ export const FOOTER_DATA = [
   {
     title: "Community",
     data: [
-
       {
         name: "GitHub",
         icon: RxGithubLogo,
         link: "https://github.com",
       },
-
     ],
   },
   {
     title: "Social Media",
     data: [
-
       {
         name: "Linkedin",
         icon: RxLinkedinLogo,
@@ -221,7 +244,6 @@ export const FOOTER_DATA = [
   {
     title: "About",
     data: [
-   
       {
         name: "Contact Me",
         icon: null,
@@ -245,5 +267,3 @@ export const NAV_LINKS = [
     link: "#projects",
   },
 ] as const;
-
-
