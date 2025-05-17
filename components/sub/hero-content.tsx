@@ -4,8 +4,47 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/lib/motion";
+import React, { useEffect, useState } from "react";
+
+const texts = [
+  "Fast Execution",
+  "Continuous Improvement",
+  "User-Friendly Interface",
+  "Optimized Performance",
+];
 
 export const HeroContent = () => {
+  const [currentText, setCurrentText] = useState("");
+  const [loopNum, setLoopNum] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % texts.length;
+      const fullText = texts[i];
+
+      setCurrentText(
+        isDeleting
+          ? fullText.substring(0, currentText.length - 1)
+          : fullText.substring(0, currentText.length + 1)
+      );
+
+      if (!isDeleting && currentText === fullText) {
+        setTimeout(() => setIsDeleting(true), 1000);
+      } else if (isDeleting && currentText === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+
+      setTypingSpeed(isDeleting ? 50 : 150);
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, loopNum, typingSpeed]);
+
   return (
     <motion.div
       initial="hidden"
@@ -40,12 +79,13 @@ export const HeroContent = () => {
           </span>
         </motion.h1>
 
-        {/* Description */}
+        {/* Animated Typing Text (replacing description paragraph) */}
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-base sm:text-lg text-gray-400 my-3 sm:my-4 max-w-[500px] mx-auto md:mx-0"
+          className="text-base sm:text-lg text-gray-400 my-3 sm:my-4 max-w-[500px] mx-auto md:mx-0 font-mono"
         >
-          I&apos;m a Full Stack Software Engineer specializing in building modern web applications. Check out my projects and skills.
+          {currentText}
+          <span className="blinking-cursor">|</span>
         </motion.p>
 
         {/* Call-to-Action Button */}
