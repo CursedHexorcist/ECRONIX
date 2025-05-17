@@ -4,9 +4,9 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/lib/motion";
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const texts = [
+const typingList = [
   "Fast Execution",
   "Continuous Improvement",
   "User-Friendly Interface",
@@ -14,36 +14,40 @@ const texts = [
 ];
 
 export const HeroContent = () => {
-  const [currentText, setCurrentText] = useState("");
-  const [loopNum, setLoopNum] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [listIndex, setListIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [typingSpeed, setTypingSpeed] = useState(150);
 
   useEffect(() => {
-    const handleTyping = () => {
-      const i = loopNum % texts.length;
-      const fullText = texts[i];
+    const currentText = typingList[listIndex];
+    let timeout: NodeJS.Timeout;
 
-      setCurrentText(
-        isDeleting
-          ? fullText.substring(0, currentText.length - 1)
-          : fullText.substring(0, currentText.length + 1)
-      );
-
-      if (!isDeleting && currentText === fullText) {
-        setTimeout(() => setIsDeleting(true), 1000);
-      } else if (isDeleting && currentText === "") {
+    if (!isDeleting && charIndex <= currentText.length) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentText.substring(0, charIndex));
+        setCharIndex((prev) => prev + 1);
+      }, 120);
+    } else if (isDeleting && charIndex >= 0) {
+      timeout = setTimeout(() => {
+        setDisplayedText(currentText.substring(0, charIndex));
+        setCharIndex((prev) => prev - 1);
+      }, 50);
+    } else if (charIndex === currentText.length + 1) {
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+        setCharIndex((prev) => prev - 1);
+      }, 1000);
+    } else if (charIndex === 0 && isDeleting) {
+      timeout = setTimeout(() => {
         setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-      }
+        setListIndex((prev) => (prev + 1) % typingList.length);
+        setCharIndex(0);
+      }, 500);
+    }
 
-      setTypingSpeed(isDeleting ? 50 : 150);
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [currentText, isDeleting, loopNum, typingSpeed]);
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, listIndex]);
 
   return (
     <motion.div
@@ -79,13 +83,13 @@ export const HeroContent = () => {
           </span>
         </motion.h1>
 
-        {/* Animated Typing Text (replacing description paragraph) */}
+        {/* Typing Description */}
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-base sm:text-lg text-gray-400 my-3 sm:my-4 max-w-[500px] mx-auto md:mx-0 font-mono"
+          className="text-lg sm:text-2xl text-gray-300 my-4 max-w-[600px] mx-auto md:mx-0 font-medium"
         >
-          {currentText}
-          <span className="blinking-cursor">|</span>
+          {displayedText}
+          <span className="typing-cursor">|</span>
         </motion.p>
 
         {/* Call-to-Action Button */}
