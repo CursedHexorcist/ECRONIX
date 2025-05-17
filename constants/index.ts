@@ -1,4 +1,4 @@
-import { FaFacebook } from "react-icons/fa";
+import { FaYoutube, FaFacebook } from "react-icons/fa";
 import {
   RxDiscordLogo,
   RxGithubLogo,
@@ -7,7 +7,15 @@ import {
   RxLinkedinLogo,
 } from "react-icons/rx";
 
-export const SKILL_DATA = [
+// Definisikan tipe Skill
+export type Skill = {
+  skill_name: string;
+  image: string;
+  width: number;
+  height: number;
+};
+
+export const SKILL_DATA: Skill[] = [
   {
     skill_name: "HTML",
     image: "html.png",
@@ -80,7 +88,7 @@ export const SKILL_DATA = [
     width: 40,
     height: 40,
   },
-] as const;
+];
 
 export const SOCIALS = [
   {
@@ -98,9 +106,9 @@ export const SOCIALS = [
     icon: RxTwitterLogo,
     link: "https://twitter.com",
   },
-] as const;
+];
 
-export const FRONTEND_SKILL = [
+export const FRONTEND_SKILL: Skill[] = [
   {
     skill_name: "HTML",
     image: "html.png",
@@ -137,9 +145,9 @@ export const FRONTEND_SKILL = [
     width: 80,
     height: 80,
   },
-] as const;
+];
 
-export const BACKEND_SKILL = [
+export const BACKEND_SKILL: Skill[] = [
   {
     skill_name: "Node.js",
     image: "node.png",
@@ -158,49 +166,15 @@ export const BACKEND_SKILL = [
     width: 40,
     height: 40,
   },
-] as const;
+];
 
-export const FULLSTACK_SKILL = [
-  {
-    skill_name: "React",
-    image: "react.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Node.js",
-    image: "node.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Express.js",
-    image: "express.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "MongoDB",
-    image: "mongodb.png",
-    width: 40,
-    height: 40,
-  },
-] as const;
+export const FULLSTACK_SKILL: Skill[] = [
+  // Bisa kamu isi nanti kalau ada skill fullstack
+];
 
-export const OTHER_SKILL = [
-  {
-    skill_name: "Docker",
-    image: "docker.png",
-    width: 80,
-    height: 80,
-  },
-  {
-    skill_name: "Git",
-    image: "git.png",
-    width: 80,
-    height: 80,
-  },
-] as const;
+export const OTHER_SKILL: Skill[] = [
+  // Bisa kamu isi nanti kalau ada skill lain
+];
 
 export const PROJECTS = [
   {
@@ -218,7 +192,7 @@ export const PROJECTS = [
     image: "/projects/project-3.webp",
     link: "https://speedlineautoparts.netlify.app/",
   },
-] as const;
+];
 
 export const FOOTER_DATA = [
   {
@@ -251,7 +225,7 @@ export const FOOTER_DATA = [
       },
     ],
   },
-] as const;
+];
 
 export const NAV_LINKS = [
   {
@@ -266,4 +240,4 @@ export const NAV_LINKS = [
     title: "Projects",
     link: "#projects",
   },
-] as const;
+];
