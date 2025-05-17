@@ -67,14 +67,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Animasi Blink untuk typing cursor */
 @keyframes blink {
-  50% {
+  0%, 50%, 100% {
+    opacity: 1;
+  }
+  25%, 75% {
     opacity: 0;
   }
 }
 
-.blinking-cursor {
-  animation: blink 1s step-start infinite;
+.typing-cursor {
+  display: inline-block;
+  width: 1ch;
+  animation: blink 1.2s steps(2, start) infinite;
   color: #b49bff; /* warna ungu sesuai tema */
   font-weight: 600;
 }
