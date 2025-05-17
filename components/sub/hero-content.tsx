@@ -31,13 +31,13 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.5)}
           className="text-3xl sm:text-4xl md:text-6xl font-bold text-white max-w-[600px] leading-tight"
         >
-          Building Scripts for Consistently{" "}
+          Building High-Performance{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            Optimal
+            Script.
           </span>{" "}
-            User{" "}
+            Every Time. For Every{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-            Experiences
+            User
           </span>
         </motion.h1>
 
