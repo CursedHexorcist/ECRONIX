@@ -1,10 +1,12 @@
 "use client";
 
 import { SparklesIcon } from "@heroicons/react/24/solid";
+import { Fire } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/lib/motion";
 import { Typewriter } from "react-simple-typewriter";
+import { DiscordLogo } from "./DiscordLogo"; // sesuaikan path import
 
 export const HeroContent = () => {
   return (
@@ -31,11 +33,11 @@ export const HeroContent = () => {
           variants={slideInFromLeft(0.5)}
           className="text-3xl sm:text-4xl md:text-6xl font-bold text-white max-w-[600px] leading-tight"
         >
-         We Build Scripts That Perform{" "}
+          We Build Scripts That Perform{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
             Every Time
           </span>{" "}
-            For{" "}
+          For{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
             Everyone
           </span>
@@ -62,14 +64,29 @@ export const HeroContent = () => {
           />
         </motion.p>
 
-        {/* Call-to-Action Button */}
-        <motion.a
+        {/* Custom Learn More Button with Discord and Gradient Shape */}
+        <motion.div
           variants={slideInFromLeft(1)}
-          href="#projects"
-          className="py-2 px-5 sm:px-6 bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-base sm:text-lg font-medium rounded-lg shadow-lg transition-transform transform hover:scale-105 max-w-[180px] sm:max-w-[200px] mx-auto md:mx-0"
+          className="flex max-w-[280px] mx-auto md:mx-0 gap-4 cursor-pointer select-none"
+          onClick={() => window.open("https://discord.gg/your-server", "_blank")}
         >
-          Learn more
-        </motion.a>
+          {/* Left: Discord Logo + Text */}
+          <div className="flex items-center gap-2 bg-[#5865F2] px-4 py-2 rounded-lg shadow-md hover:bg-[#4752c4] transition-colors">
+            <DiscordLogo className="w-6 h-6" />
+            <span className="text-white font-semibold">Join Our Discord</span>
+          </div>
+
+          {/* Right: Gradient Shape + Fire Icon + Text */}
+          <div
+            className="flex items-center gap-2 px-5 py-2 rounded-lg
+              bg-gradient-to-r from-purple-900 via-black to-blue-900
+              hover:from-blue-900 hover:via-purple-900 hover:to-black
+              transition-colors duration-300 shadow-md"
+          >
+            <Fire className="w-5 h-5 text-orange-400" />
+            <span className="text-white font-semibold">Get Yours</span>
+          </div>
+        </motion.div>
       </div>
 
       {/* Right Side Image */}
@@ -89,4 +106,3 @@ export const HeroContent = () => {
     </motion.div>
   );
 };
-
