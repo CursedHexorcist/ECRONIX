@@ -4,51 +4,9 @@ import { SparklesIcon } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/lib/motion";
-import { useState, useEffect } from "react";
-
-const typingList = [
-  "Fast Execution",
-  "Continuous Improvement",
-  "User-Friendly Interface",
-  "Optimized Performance",
-];
+import { Typewriter } from "react-simple-typewriter";
 
 export const HeroContent = () => {
-  const [displayedText, setDisplayedText] = useState("");
-  const [listIndex, setListIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentText = typingList[listIndex];
-    let timeout: NodeJS.Timeout;
-
-    if (!isDeleting && charIndex <= currentText.length) {
-      timeout = setTimeout(() => {
-        setDisplayedText(currentText.substring(0, charIndex));
-        setCharIndex((prev) => prev + 1);
-      }, 120);
-    } else if (isDeleting && charIndex >= 0) {
-      timeout = setTimeout(() => {
-        setDisplayedText(currentText.substring(0, charIndex));
-        setCharIndex((prev) => prev - 1);
-      }, 50);
-    } else if (charIndex === currentText.length + 1) {
-      timeout = setTimeout(() => {
-        setIsDeleting(true);
-        setCharIndex((prev) => prev - 1);
-      }, 1000);
-    } else if (charIndex === 0 && isDeleting) {
-      timeout = setTimeout(() => {
-        setIsDeleting(false);
-        setListIndex((prev) => (prev + 1) % typingList.length);
-        setCharIndex(0);
-      }, 500);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, listIndex]);
-
   return (
     <motion.div
       initial="hidden"
@@ -83,13 +41,25 @@ export const HeroContent = () => {
           </span>
         </motion.h1>
 
-        {/* Typing Description */}
+        {/* Typing Effect */}
         <motion.p
           variants={slideInFromLeft(0.8)}
-          className="text-lg sm:text-2xl text-gray-300 my-4 max-w-[600px] mx-auto md:mx-0 font-medium"
+          className="text-lg sm:text-xl text-gray-400 font-medium max-w-[600px] mx-auto md:mx-0 min-h-[40px]"
         >
-          {displayedText}
-          <span className="typing-cursor">|</span>
+          <Typewriter
+            words={[
+              "Fast Execution",
+              "Continuous Improvement",
+              "User-Friendly Interface",
+              "Optimized Performance",
+            ]}
+            loop={true}
+            cursor
+            cursorStyle="|"
+            typeSpeed={60}
+            deleteSpeed={40}
+            delaySpeed={2000}
+          />
         </motion.p>
 
         {/* Call-to-Action Button */}
@@ -119,3 +89,4 @@ export const HeroContent = () => {
     </motion.div>
   );
 };
+
