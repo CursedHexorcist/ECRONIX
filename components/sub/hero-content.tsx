@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/lib/motion";
 import { Typewriter } from "react-simple-typewriter";
-import { DiscordLogo } from "./DiscordLogo.tsx";
+import { DiscordLogo } from "./DiscordLogo";
 
 export const HeroContent = () => {
   return (
