@@ -68,7 +68,7 @@ export const HeroContent = () => {
           href="#projects"
           className="py-2 px-5 sm:px-6 bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-base sm:text-lg font-medium rounded-lg shadow-lg transition-transform transform hover:scale-105 max-w-[180px] sm:max-w-[200px] mx-auto md:mx-0"
         >
-          Learn more
+            Learn more
         </motion.a>
       </div>
 
